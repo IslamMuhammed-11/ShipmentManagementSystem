@@ -15,18 +15,35 @@ public partial class Customer
         CompanyName = companyName;
     }
 
+    private Customer()
+    {
+    }
+
     public static Customer Create(int userId, string? companyName)
     {
         return new Customer(userId, companyName);
     }
 
-    public static CustomerAddress AddAddress(Customer customer, Address address, string? label, bool isDefault)
+    public CustomerAddress AddAddress(Address address, string? label, bool isDefault)
     {
-        var customerAddress = CustomerAddress.Create(customer.UserId, address.Id, label, isDefault);
+        var customerAddress = CustomerAddress.Create(this.UserId, address.Id, label, isDefault);
 
-        customer.CustomerAddresses.Add(customerAddress);
+        CustomerAddresses.Add(customerAddress);
 
         return customerAddress;
+    }
+
+
+    public Review AddReview(Shipment shipment, byte rating, string? comment , DateTime createdAt)
+    {
+        var review = Review.Create(shipment.Id , UserId , rating , comment , createdAt);
+        Reviews.Add(review);
+        return review;
+    }
+
+    public void UpdateCompanyName(string? companyName)
+    {
+        CompanyName = companyName;
     }
 
     public virtual ICollection<CustomerAddress> CustomerAddresses { get; private set; } = new List<CustomerAddress>();

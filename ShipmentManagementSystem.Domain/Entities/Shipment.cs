@@ -5,53 +5,112 @@ namespace ShipmentManagementSystem.Domain.Entities;
 
 public partial class Shipment
 {
-    public int Id { get; set; }
+    public int Id { get; init; }
 
-    public string TrackingNumber { get; set; } = null!;
+    public string TrackingNumber { get; init; } = null!;
 
-    public int CustomerId { get; set; }
+    public int CustomerId { get; init; }
 
-    public int PickupAddressId { get; set; }
+    public int PickupAddressId { get; private set; }
 
-    public int DeliveryAddressId { get; set; }
+    public int DeliveryAddressId { get; private set; }
 
-    public string? PackageDescription { get; set; }
+    public string? PackageDescription { get; private set; }
 
-    public decimal WeightKg { get; set; }
+    public decimal WeightKg { get; init; }
 
-    public decimal Price { get; set; }
+    public decimal Price { get; init; }
 
-    public int? AssignedDriverId { get; set; }
+    public int? AssignedDriverId { get; private set; }
 
-    public int? AssignedVehicleId { get; set; }
+    public int? AssignedVehicleId { get; private set; }
 
-    public int? CurrentWarehouseId { get; set; }
+    public int? CurrentWarehouseId { get; private set; }
 
-    public int? ApprovedByEmployeeId { get; set; }
+    public int? ApprovedByEmployeeId { get; init; }
 
-    public string CurrentStatus { get; set; } = null!;
+    public string CurrentStatus { get; private set; } = null!;
 
-    public DateTime CreatedAt { get; set; }
+    public DateTime CreatedAt { get; init; }
 
-    public virtual Employee? ApprovedByEmployee { get; set; }
+    private Shipment()
+    {
+    }
 
-    public virtual Driver? AssignedDriver { get; set; }
+    private Shipment(string trackingNumber, int customerId, int pickupAddressId, int deliveryAddressId, string? packageDescription,
+        decimal weightKg, decimal price, int? assignedDriverId, int? assignedVehicleId, int? currentWarehouseId,
+        int? approvedByEmployeeId, string currentStatus, DateTime createdAt)
+    {
+        TrackingNumber = trackingNumber;
+        CustomerId = customerId;
+        PickupAddressId = pickupAddressId;
+        DeliveryAddressId = deliveryAddressId;
+        PackageDescription = packageDescription;
+        WeightKg = weightKg;
+        Price = price;
+        AssignedDriverId = assignedDriverId;
+        AssignedVehicleId = assignedVehicleId;
+        CurrentWarehouseId = currentWarehouseId;
+        ApprovedByEmployeeId = approvedByEmployeeId;
+        CurrentStatus = currentStatus;
+        CreatedAt = createdAt;
+    }
 
-    public virtual Vehicle? AssignedVehicle { get; set; }
 
-    public virtual Warehouse? CurrentWarehouse { get; set; }
+    public static Shipment Create(string trackingNumber, int customerId, int pickupAddressId, int deliveryAddressId, string? packageDescription,
+        decimal weightKg, decimal price, int? assignedDriverId, int? assignedVehicleId, int? currentWarehouseId,
+        int? approvedByEmployeeId, string currentStatus, DateTime createdAt)
+    {
 
-    public virtual Customer Customer { get; set; } = null!;
+        if(customerId is 0 || pickupAddressId is 0 || deliveryAddressId is 0 || string.IsNullOrWhiteSpace(trackingNumber) || string.IsNullOrWhiteSpace(currentStatus))
+        {
+            throw new ArgumentException("Invalid shipment data");
+        }
 
-    public virtual Address DeliveryAddress { get; set; } = null!;
+        return new Shipment(trackingNumber, customerId, pickupAddressId, deliveryAddressId, packageDescription,
+            weightKg, price, assignedDriverId, assignedVehicleId, currentWarehouseId,
+            approvedByEmployeeId, currentStatus, createdAt);
+    }
 
-    public virtual DeliveryProof? DeliveryProof { get; set; }
+    public void UpdateStatus(string newStatus)
+    {
+        CurrentStatus = newStatus;
+    }
 
-    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
+    public void AssignDriver(int driverId)
+    {
+        AssignedDriverId = driverId;
+    }
 
-    public virtual Address PickupAddress { get; set; } = null!;
+    public void AssignVehicle(int vehicleId)
+    {
+        AssignedVehicleId = vehicleId;
+    }
 
-    public virtual Review? Review { get; set; }
+    public void UpdateCurrentWarehouse(int? warehouseId)
+    {
+        CurrentWarehouseId = warehouseId;
+    }
 
-    public virtual ICollection<ShipmentTracking> ShipmentTrackings { get; set; } = new List<ShipmentTracking>();
+    public virtual Employee? ApprovedByEmployee { get; private set; }
+
+    public virtual Driver? AssignedDriver { get; private set; }
+
+    public virtual Vehicle? AssignedVehicle { get; private set; }
+
+    public virtual Warehouse? CurrentWarehouse { get; private set; }
+
+    public virtual Customer Customer { get; private set; } = null!;
+
+    public virtual Address DeliveryAddress { get; private set; } = null!;
+
+    public virtual DeliveryProof? DeliveryProof { get; private set; }
+
+    public virtual ICollection<Payment> Payments { get; private set; } = new List<Payment>();
+
+    public virtual Address PickupAddress { get; private set; } = null!;
+
+    public virtual Review? Review { get; private set; }
+
+    public virtual ICollection<ShipmentTracking> ShipmentTrackings { get; private set; } = new List<ShipmentTracking>();
 }

@@ -5,19 +5,39 @@ namespace ShipmentManagementSystem.Domain.Entities;
 
 public partial class Payment
 {
-    public int Id { get; set; }
+    public int Id { get; private set; }
 
-    public int ShipmentId { get; set; }
+    public int ShipmentId { get; private set; }
 
-    public decimal Amount { get; set; }
+    public decimal Amount { get; private set; }
 
-    public string Method { get; set; } = null!;
+    public string Method { get; private set; } = null!;
 
-    public string Status { get; set; } = null!;
+    public string Status { get; private set; } = null!;
 
-    public string? TransactionId { get; set; }
+    public string? TransactionId { get; private set; }
 
-    public DateTime? PaymentDate { get; set; }
+    public DateTime? PaymentDate { get; private set; }
 
-    public virtual Shipment Shipment { get; set; } = null!;
+    private Payment()
+    {
+    }
+
+
+    private Payment(int shipmentId, decimal amount, string method, string status, string? transactionId, DateTime? paymentDate)
+    {
+        ShipmentId = shipmentId;
+        Amount = amount;
+        Method = method;
+        Status = status;
+        TransactionId = transactionId;
+        PaymentDate = paymentDate;
+    }
+
+    public static Payment Create(int shipmentId, decimal amount, string method, string status, string? transactionId, DateTime? paymentDate)
+    {
+        return new Payment(shipmentId, amount, method, status, transactionId, paymentDate);
+    }
+
+    public virtual Shipment Shipment { get; private set; } = null!;
 }

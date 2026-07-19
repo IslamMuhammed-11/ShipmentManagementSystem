@@ -5,19 +5,39 @@ namespace ShipmentManagementSystem.Domain.Entities;
 
 public partial class DeliveryProof
 {
-    public int Id { get; set; }
+    public int Id { get; init; }
 
-    public int ShipmentId { get; set; }
+    public int ShipmentId { get; init; }
 
-    public string ReceiverName { get; set; } = null!;
+    public string ReceiverName { get; init; } = null!;
 
-    public string? SignatureUrl { get; set; }
+    public string? SignatureUrl { get; private set; }
 
-    public string? ProofImageUrl { get; set; }
+    public string? ProofImageUrl { get; private set; }
 
-    public string? DeliveryNotes { get; set; }
+    public string? DeliveryNotes { get; private set; }
 
-    public DateTime DeliveredAt { get; set; }
+    public DateTime DeliveredAt { get; private set; }
 
-    public virtual Shipment Shipment { get; set; } = null!;
+
+    private DeliveryProof()
+    {
+    }
+    private DeliveryProof(int shipmentId, string receiverName, string? signatureUrl, string? proofImageUrl, string? deliveryNotes, DateTime deliveredAt)
+    {
+        ShipmentId = shipmentId;
+        ReceiverName = receiverName;
+        SignatureUrl = signatureUrl;
+        ProofImageUrl = proofImageUrl;
+        DeliveryNotes = deliveryNotes;
+        DeliveredAt = deliveredAt;
+    }
+
+    public static DeliveryProof Create(int shipmentId, string receiverName, string? signatureUrl, string? proofImageUrl, string? deliveryNotes, DateTime deliveredAt)
+    {
+
+        return new DeliveryProof(shipmentId, receiverName, signatureUrl, proofImageUrl, deliveryNotes, deliveredAt);
+    }
+
+    public virtual Shipment Shipment { get; private set; } = null!;
 }

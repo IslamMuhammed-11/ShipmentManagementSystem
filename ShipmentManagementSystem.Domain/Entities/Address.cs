@@ -33,12 +33,29 @@ public partial class Address
         Coordinates = coordinates;
     }
 
+    private Address()
+    {
+    }
+
     public static Address Create(string line1, string city, string country, string? governorate = null, string? postalCode = null, Coordinates? coordinates = null)
     {
        
         return new Address(line1, city, country, governorate, postalCode, coordinates);
     }
 
+    public void UpdateCoordinates(Coordinates? newCoordinates)
+    {
+        Coordinates = newCoordinates;
+    }
+
+    public void UpdateAddress(string line1, string city, string country, string? governorate = null, string? postalCode = null)
+    {
+        Line1 = line1;
+        City = city;
+        Country = country;
+        Governorate = governorate;
+        PostalCode = postalCode;
+    }
 
     public virtual ICollection<CustomerAddress> CustomerAddresses { get; private set; } = new List<CustomerAddress>();
 

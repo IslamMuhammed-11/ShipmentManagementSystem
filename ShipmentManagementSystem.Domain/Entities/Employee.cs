@@ -5,11 +5,29 @@ namespace ShipmentManagementSystem.Domain.Entities;
 
 public partial class Employee
 {
-    public int UserId { get; set; }
+    public int UserId { get; private set; }
 
-    public string? Department { get; set; }
+    public string? Department { get; private set; }
 
-    public virtual ICollection<Shipment> Shipments { get; set; } = new List<Shipment>();
+    private Employee()
+    {
+    }
+    private Employee(int userId , string? department)
+    {
+        UserId = userId;
+        Department = department;
+    }
 
-    public virtual User User { get; set; } = null!;
+    public static Employee Create(int userId, string? department)
+    {
+        return new Employee(userId, department);
+    }
+
+    public void UpdateDepartment(string? department)
+    {
+        Department = department;
+    }
+    public virtual ICollection<Shipment> Shipments { get; private set; } = new List<Shipment>();
+
+    public virtual User User { get; private set; } = null!;
 }
