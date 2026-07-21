@@ -10,4 +10,33 @@
     <ProjectReference Include="..\ShipmentManagementSystem.Domain\ShipmentManagementSystem.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Behavior\" />
+    <Folder Include="Common\" />
+    <Folder Include="EventHandlers\" />
+    <Folder Include="Features\Customer\Commands\CreateCustomer\" />
+    <Folder Include="Features\Customer\Commands\UpdateCompanyName\" />
+    <Folder Include="Features\Customer\Queries\GetCustomerById\" />
+    <Folder Include="Features\Customer\Queries\GetCustomersPage\" />
+    <Folder Include="Features\Driver\Commands\CreateDriver\" />
+    <Folder Include="Features\Driver\Commands\AssignToVehicle\" />
+    <Folder Include="Features\Driver\Commands\MakeDeliveryProof\" />
+    <Folder Include="Features\Driver\Commands\UpdateAvailbiltyStatus\" />
+    <Folder Include="Features\Driver\Queries\GetDriverById\" />
+    <Folder Include="Features\Driver\Queries\GetDriverPage\" />
+    <Folder Include="Features\Employee\Commands\CreateEmployee\" />
+    <Folder Include="Features\Employee\Commands\ApproveShipment\" />
+    <Folder Include="Features\Employee\Commands\UpdateDepartment\" />
+    <Folder Include="Features\Employee\Queries\GetCustomerById\" />
+    <Folder Include="Features\Employee\Queries\GetCustomersPage\" />
+    <Folder Include="Features\User\Commands\CreateUser\" />
+    <Folder Include="Features\User\Commands\UpdateActivityStatus\" />
+    <Folder Include="Features\User\Commands\UpdateProfileImage\" />
+    <Folder Include="Features\User\Commands\UpdatePhoneNumber\" />
+    <Folder Include="Features\User\Commands\UpdatePassword\" />
+    <Folder Include="Features\User\Queries\GetUserById\" />
+    <Folder Include="Features\User\Queries\GetUsersPage\" />
+    <Folder Include="Mapping\" />
+  </ItemGroup>
+
 </Project>

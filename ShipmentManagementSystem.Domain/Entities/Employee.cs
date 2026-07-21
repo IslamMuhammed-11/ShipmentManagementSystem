@@ -18,7 +18,7 @@ public partial class Employee
         Department = department;
     }
 
-    public static Employee Create(int userId, string? department)
+    internal static Employee Create(int userId, string? department)
     {
         return new Employee(userId, department);
     }

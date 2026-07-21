@@ -18,7 +18,7 @@ public partial class Driver
         AvailabilityStatus = availabilityStatus;
     }
 
-    public static Driver Create(int userId, string licenseNumber, string availabilityStatus)
+    internal static Driver Create(int userId, string licenseNumber, string availabilityStatus)
     {
         return new Driver(userId, licenseNumber, availabilityStatus);
     }

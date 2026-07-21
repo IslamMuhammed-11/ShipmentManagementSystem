@@ -6,9 +6,6 @@ namespace ShipmentManagementSystem.Domain.Entities;
 
 public partial class Address
 {
-
-
-    
     public int Id { get; private set; }
 
     public string Line1 { get; private set; } = null!;

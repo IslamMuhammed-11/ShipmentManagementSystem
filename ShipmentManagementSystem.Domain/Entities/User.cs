@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShipmentManagementSystem.Domain.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace ShipmentManagementSystem.Domain.Entities;
@@ -46,6 +47,27 @@ public partial class User
         var refreshToken = RefreshToken.Create(Id, tokenHash, expiresAt, isRevoked, createdAt);
         RefreshTokens.Add(refreshToken);
         return refreshToken;
+    }
+
+    public Customer MakeCustomer(string? companyName)
+    {
+        var customer = Customer.Create(this.Id, companyName);
+        this.Customer = customer;
+        return customer;
+    }
+
+    public Driver MakeDriver(string licenseNumber , DriverStatus status)
+    {
+        var driver = Driver.Create(this.Id, licenseNumber, status.ToString());
+        this.Driver = driver;
+        return driver;
+    }
+
+    public Employee MakeEmployee(string department)
+    {
+        var emp = Employee.Create(this.Id, department);
+        this.Employee = emp;
+        return emp;
     }
 
     public void UpdateEmail(string email)
