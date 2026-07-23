@@ -4,4 +4,6 @@ public static class UserErrors
 {
     public static Error EmailAlreadyExists => Error.Create("User.EmailExists",
         "User with the provided email already exists.", enErrorTypes.Conflict);
+
+    public static Error UserNotFound(int id) => Error.Create("User.NotFound", $"User With this Id was not Found : {id}", enErrorTypes.NotFound);
 }

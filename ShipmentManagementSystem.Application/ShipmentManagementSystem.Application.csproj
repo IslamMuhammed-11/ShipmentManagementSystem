@@ -53,10 +53,8 @@
     <Folder Include="Features\Shipment\Queries\GetCustomerShipments\" />
     <Folder Include="Features\Shipment\Queries\GetActiveShipments\" />
     <Folder Include="Features\Shipment\Queries\GetDriverShipments\" />
-    <Folder Include="Features\Users\Commands\UpdateActivityStatus\" />
     <Folder Include="Features\Users\Commands\UpdateProfileImage\" />
     <Folder Include="Features\Users\Commands\UpdatePhoneNumber\" />
-    <Folder Include="Features\Users\Commands\UpdatePassword\" />
     <Folder Include="Features\Users\Queries\GetUserById\" />
     <Folder Include="Features\Users\Queries\GetUsersPage\" />
     <Folder Include="Mapping\" />
