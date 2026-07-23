@@ -1,5 +1,7 @@
 ﻿using ShipmentManagementSystem.Domain.Errors;
 
+#pragma warning disable CS0108
+
 namespace ShipmentManagementSystem.Application.Common;
 
 public class Result
