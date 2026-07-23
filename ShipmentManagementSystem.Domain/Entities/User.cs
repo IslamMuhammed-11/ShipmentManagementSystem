@@ -1,12 +1,18 @@
 ﻿using ShipmentManagementSystem.Domain.Enums;
-using System;
-using System.Collections.Generic;
 
 namespace ShipmentManagementSystem.Domain.Entities;
 
 public partial class User
 {
     public int Id { get; private set; }
+
+    public string FirstName { get; private set; } = null!;
+
+    public string? SecondName { get; private set; }
+
+    public string? ThirdName { get; private set; }
+
+    public string LastName { get; private set; } = null!;
 
     public string Email { get; private set; } = null!;
 
@@ -22,12 +28,18 @@ public partial class User
 
     public DateTime CreatedAt { get; private set; }
 
+
+
     private User()
     {
     }
 
-    private User(string email, string passwordHash, string? phoneNumber, string? profileImageUrl, int roleId, bool isActive, DateTime createdAt)
+    private User(string firstName, string? secondName, string? thirdName, string lastName, string email, string passwordHash, string? phoneNumber, string? profileImageUrl, int roleId, bool isActive, DateTime createdAt)
     {
+        FirstName = firstName;
+        SecondName = secondName;
+        ThirdName = thirdName;
+        LastName = lastName;
         Email = email;
         PasswordHash = passwordHash;
         PhoneNumber = phoneNumber;
@@ -37,9 +49,9 @@ public partial class User
         CreatedAt = createdAt;
     }
 
-    public static User Create(string email, string passwordHash, string? phoneNumber, string? profileImageUrl, int roleId, bool isActive, DateTime createdAt)
+    public static User Create(string firstName, string? secondName, string? thirdName, string lastName, string email, string passwordHash, string? phoneNumber, string? profileImageUrl, int roleId, bool isActive, DateTime createdAt)
     {
-        return new User(email, passwordHash, phoneNumber, profileImageUrl, roleId, isActive, createdAt);
+        return new User(firstName , secondName , thirdName , lastName ,email, passwordHash, phoneNumber, profileImageUrl, roleId, isActive, createdAt);
     }
 
     public RefreshToken CreateRefreshToken(string tokenHash, DateTime expiresAt, bool isRevoked, DateTime createdAt)
@@ -56,7 +68,7 @@ public partial class User
         return customer;
     }
 
-    public Driver MakeDriver(string licenseNumber , DriverStatus status)
+    public Driver MakeDriver(string licenseNumber, DriverStatus status)
     {
         var driver = Driver.Create(this.Id, licenseNumber, status.ToString());
         this.Driver = driver;
@@ -74,7 +86,7 @@ public partial class User
     {
         Email = email;
     }
-    
+
     public void ChangePassword(string newPasswordHash)
     {
         PasswordHash = newPasswordHash;

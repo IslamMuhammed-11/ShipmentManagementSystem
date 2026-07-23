@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
+using ShipmentManagementSystem.Application.Features.Users.Commands.RegisterUser.ValidatorExtensions;
 
-namespace ShipmentManagementSystem.Application.Features.User.Commands.RegisterUser.Validators;
+namespace ShipmentManagementSystem.Application.Features.Users.Commands.RegisterUser.ValidatorExtensions;
 
 public static class UserValidationExtension
 {

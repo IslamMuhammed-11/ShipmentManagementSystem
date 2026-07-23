@@ -3,11 +3,11 @@ namespace ShipmentManagementSystem.Domain.Interfaces;
 public interface IGenericRepository<TEntity>
     where TEntity : class
 {
-    Task<IReadOnlyCollection<TEntity>> GetAll();
+    Task<IReadOnlyCollection<TEntity>> GetAllAsync();
 
-    Task<IReadOnlyCollection<TEntity>> GetPage(int take, int skip);
+    Task<IReadOnlyCollection<TEntity>> GetPageAsync(int take, int skip);
 
-    Task<TEntity?> GetById(int id);
+    Task<TEntity?> GetByIdAsync(int id);
 
     IQueryable<TEntity> Query();
 
@@ -16,4 +16,6 @@ public interface IGenericRepository<TEntity>
     void Update(TEntity entity);
 
     void Delete(TEntity entity);
+
+    Task<int> SaveChangesAsync(CancellationToken ct = default);
 }

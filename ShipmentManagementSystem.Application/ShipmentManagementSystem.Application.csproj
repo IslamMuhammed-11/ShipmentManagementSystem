@@ -53,18 +53,19 @@
     <Folder Include="Features\Shipment\Queries\GetCustomerShipments\" />
     <Folder Include="Features\Shipment\Queries\GetActiveShipments\" />
     <Folder Include="Features\Shipment\Queries\GetDriverShipments\" />
-    <Folder Include="Features\User\Commands\UpdateActivityStatus\" />
-    <Folder Include="Features\User\Commands\UpdateProfileImage\" />
-    <Folder Include="Features\User\Commands\UpdatePhoneNumber\" />
-    <Folder Include="Features\User\Commands\UpdatePassword\" />
-    <Folder Include="Features\User\Queries\GetUserById\" />
-    <Folder Include="Features\User\Queries\GetUsersPage\" />
+    <Folder Include="Features\Users\Commands\UpdateActivityStatus\" />
+    <Folder Include="Features\Users\Commands\UpdateProfileImage\" />
+    <Folder Include="Features\Users\Commands\UpdatePhoneNumber\" />
+    <Folder Include="Features\Users\Commands\UpdatePassword\" />
+    <Folder Include="Features\Users\Queries\GetUserById\" />
+    <Folder Include="Features\Users\Queries\GetUsersPage\" />
     <Folder Include="Mapping\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="16.2.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
     <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
     <PackageReference Include="MediatR" Version="14.2.0" />

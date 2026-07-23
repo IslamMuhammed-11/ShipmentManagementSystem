@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using ShipmentManagementSystem.Application.Features.User.Commands.RegisterUser.Validators;
+using ShipmentManagementSystem.Application.Features.Users.Commands.RegisterUser.ValidatorExtensions;
 
-namespace ShipmentManagementSystem.Application.Features.User.Commands.RegisterUser;
+namespace ShipmentManagementSystem.Application.Features.Users.Commands.RegisterUser;
 
 public class RegisterUserValidator : AbstractValidator<RegisterUserCommand>
 {
