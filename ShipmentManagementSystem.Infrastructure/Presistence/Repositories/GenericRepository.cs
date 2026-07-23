@@ -5,8 +5,8 @@ namespace ShipmentManagementSystem.Infrastructure.Presistence.Repositories;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
-    private readonly LogisticsShipmentDbContext _context;
-    private readonly DbSet<T> _dbSet;
+    protected readonly LogisticsShipmentDbContext _context;
+    protected readonly DbSet<T> _dbSet;
     public GenericRepository(LogisticsShipmentDbContext context)
     {
         _context = context;

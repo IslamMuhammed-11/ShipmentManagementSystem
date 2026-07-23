@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <Folder Include="EventHandlers\" />
+    <Folder Include="Features\Auth\Commands\" />
+    <Folder Include="Features\Auth\Queries\" />
     <Folder Include="Features\Customer\Commands\CreateCustomer\" />
     <Folder Include="Features\Customer\Commands\UpdateCompanyName\" />
     <Folder Include="Features\Customer\Queries\GetCustomerById\" />
@@ -51,7 +53,6 @@
     <Folder Include="Features\Shipment\Queries\GetCustomerShipments\" />
     <Folder Include="Features\Shipment\Queries\GetActiveShipments\" />
     <Folder Include="Features\Shipment\Queries\GetDriverShipments\" />
-    <Folder Include="Features\User\Commands\RegisterUser\" />
     <Folder Include="Features\User\Commands\UpdateActivityStatus\" />
     <Folder Include="Features\User\Commands\UpdateProfileImage\" />
     <Folder Include="Features\User\Commands\UpdatePhoneNumber\" />

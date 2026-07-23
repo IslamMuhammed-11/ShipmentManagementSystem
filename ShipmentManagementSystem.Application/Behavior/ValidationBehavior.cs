@@ -3,7 +3,7 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+    
 namespace ShipmentManagementSystem.Application.Behavior;
 
 public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
@@ -27,7 +27,7 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
         var validationResults = await Task.WhenAll(validtor.Select(e => e.ValidateAsync(context, cancellationToken)));
 
         var faliures = validationResults.SelectMany(e => e.Errors).Where(fail => fail is not null);
-
+        
         //if(faliures.Any())
             //Throw or Handle
 
