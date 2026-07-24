@@ -1,4 +1,4 @@
-﻿using ShipmentManagementSystem.Application.Interfaces;
+﻿using ShipmentManagementSystem.Application.Interfaces.Validator;
 
 namespace ShipmentManagementSystem.Infrastructure.Auhtentciation;
 

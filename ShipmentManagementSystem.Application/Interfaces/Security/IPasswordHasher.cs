@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShipmentManagementSystem.Application.Interfaces;
+namespace ShipmentManagementSystem.Application.Interfaces.Validator;
 
 public interface IPasswordHasher
 {

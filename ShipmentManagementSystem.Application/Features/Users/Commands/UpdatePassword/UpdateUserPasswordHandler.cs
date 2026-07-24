@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using ShipmentManagementSystem.Application.Common;
-using ShipmentManagementSystem.Application.Interfaces;
+using ShipmentManagementSystem.Application.Interfaces.Validator;
 using ShipmentManagementSystem.Domain.Errors;
 using ShipmentManagementSystem.Domain.Interfaces;
 
