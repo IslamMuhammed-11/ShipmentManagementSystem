@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using ShipmentManagementSystem.Application.Common;
+using ShipmentManagementSystem.Application.Interfaces.Validator;
 using ShipmentManagementSystem.Domain.Entities;
 using ShipmentManagementSystem.Domain.Errors;
 using ShipmentManagementSystem.Domain.Interfaces;
@@ -9,10 +10,14 @@ namespace ShipmentManagementSystem.Application.Features.Users.Commands.RegisterU
 public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result<int>>
 {
     private readonly IUserRepository _userRepository;
-
-    public RegisterUserHandler(IUserRepository userRepository)
+    private readonly IPasswordHasher _passwordHasher;
+    private readonly IPhoneNumberChecker _phoneNumberChecker;
+    public RegisterUserHandler(IUserRepository userRepository, IPasswordHasher passwordHasher
+        , IPhoneNumberChecker phoneNumberChecker)
     {
         _userRepository = userRepository;
+        _passwordHasher = passwordHasher;
+        _phoneNumberChecker = phoneNumberChecker;
     }
 
     public async Task<Result<int>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
@@ -24,7 +29,14 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result<i
 
         //var image = HandleImageUpload(request.ProfileImageUrl, cancellationToken);
 
-        string hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.Password);
+        string hashedPassword = _passwordHasher.HashPassword(request.Password);
+
+        bool isPhoneNumberValid = request.PhoneNumber is null ?
+            true : _phoneNumberChecker.IsValid(request.PhoneNumber);
+
+        if (!isPhoneNumberValid)
+            return Result<int>.Failure(UserErrors.InvalidPhoneNumber);
+
 
         var user = User.Create(
             request.FirstName,
